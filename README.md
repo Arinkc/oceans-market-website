@@ -55,11 +55,9 @@ git clone https://github.com/Arinkc/oceans-market-website.git
 
 
 Navigate into the project folder:
-
 cd oceans-market-website
-
-
 Open index.html in your browser.
+
 ---------------------------------------------
 
 Thanks for visiting! 🌊🍩
