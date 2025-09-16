@@ -1,8 +1,8 @@
 # oceans-market-website
 A website for Ocean's Market donut shop that includes menu, about page, hours and pricing.
-# 🍩 Ocean's Market - Doughnut Menu
+# 🍩 Ocean's Market - Doughnut Shop
 
-Welcome to the official GitHub repository for the **Ocean's Market Doughnut Menu**, a real-world web application for **Ocean's Market**, a doughnut shop located in **Ocean City, Maryland**.
+Welcome to the official GitHub repository for the **Ocean's Market Doughnut Shop**, a real-world web application for **Ocean's Market**, a doughnut shop located in **Ocean City, Maryland**.
 ## 🌊 About Ocean's Market
 
 Ocean's Market is a locally loved doughnut shop in **Ocean City, MD**, known for its handcrafted doughnuts, unique flavors, and customizable options. Whether you're a fan of classic glazed or want to build your own creation with sprinkles, caramel drizzle, and more — we've got you covered.
