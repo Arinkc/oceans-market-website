@@ -37,14 +37,13 @@ Contact.html – Get in touch with us
 - ✅ Contact interaction
 - ✅ User-friendly error and success messages
 - ✅ Organized and reusable styling
-
-SEO-friendly meta tags
+- SEO-friendly meta tags
 ---------------------------------------------
 👥 Authors
 
 Arin Kc
-
 Kritagya Ghimire
+
 ---------------------------------------------
 📦 How to Use
 
