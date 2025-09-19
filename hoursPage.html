@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Arin Kc, Kritagya Ghimire">
+    <meta name="description" content="Store Hours for The Ocean's Market">
+    <title>Store Hours - Ocean's Market</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <script src="shared.js"></script>
+    <style>
+        body {                              
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #FFA07A;
+        }
+
+        header {
+            background-color: #FFA07A;
+            padding: 0.275rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #58BDDE; 
+        }
+
+        .logo {
+            width: 170px; 
+            height: auto;
+        }
+
+        .hours {
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 600px;
+            font-size: 2rem;
+        }
+
+        .hours dl {
+            margin: 0;
+            padding: 0;
+        }
+
+        .hours dd {
+            margin-left: 20px;
+            color: #333;
+        }
+
+        .store-status {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-open {
+            background-color: #28a745;
+        }
+
+        .status-closed {
+            background-color: #dc3545;
+        }
+
+        .next-opening {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FFA07A;
+            margin-top: 0.5rem;
+        }
+
+        .hours-table {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .hours-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hours-table th,
+        .hours-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hours-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .current-day {
+            background-color: #e8f5e8;
+            font-weight: bold;
+        }
+
+        .special-hours {
+            background-color: #fff3cd;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 4px solid #ffc107;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="AboutPage.html">ABOUT</a></li>
+                <li><a href="Menu.html">MENU</a></li>
+                <li><img src="OceanCityLogo.png" alt="Ocean's Market Logo" class="logo"></li>
+                <li><a href="hoursPage.html">HOURS</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hours"> <!-- Where the hours are shown -->
+            <h2>Store Hours</h2>
+            
+            <div class="store-status">
+                <h3>Current Status</h3>
+                <p id="statusText">
+                    <span class="status-indicator" id="statusIndicator"></span>
+                    <span id="statusMessage">Loading...</span>
+                </p>
+                <div class="next-opening" id="nextOpening"></div>
+                <div class="countdown" id="countdown"></div>
+            </div>
+            
+            <div class="hours-table">
+                <h3>Weekly Hours</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Hours</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hoursTableBody">
+                        <!-- Hours will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="special-hours">
+                <h4>Special Hours & Holidays</h4>
+                <p><strong>New Year's Day:</strong> 9:00 AM - 8:00 PM</p>
+                <p><strong>Memorial Day:</strong> 7:00 AM - 10:00 PM</p>
+                <p><strong>Independence Day:</strong> 7:00 AM - 10:00 PM</p>
+                <p><strong>Labor Day:</strong> 7:00 AM - 10:00 PM</p>
+                <p><strong>Thanksgiving:</strong> 7:00 AM - 2:00 PM</p>
+                <p><strong>Christmas Eve:</strong> 7:00 AM - 6:00 PM</p>
+                <p><strong>Christmas Day:</strong> Closed</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2025 The Ocean's Market | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Store hours configuration
+        const storeHours = {
+            monday: { open: '7:00 AM', close: '11:00 PM' },
+            tuesday: { open: '7:00 AM', close: '11:00 PM' },
+            wednesday: { open: '7:00 AM', close: '11:00 PM' },
+            thursday: { open: '7:00 AM', close: '11:00 PM' },
+            friday: { open: '7:00 AM', close: '12:00 AM' },
+            saturday: { open: '7:00 AM', close: '12:00 AM' },
+            sunday: { open: '7:00 AM', close: '12:00 AM' }
+        };
+
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStoreStatus();
+            populateHoursTable();
+            updateCountdown();
+            
+            // Update every minute
+            setInterval(updateStoreStatus, 60000);
+            setInterval(updateCountdown, 1000);
+        });
+
+        function updateStoreStatus() {
+            const now = new Date();
+            const currentDay = now.getDay();
+            const currentTime = now.getHours() * 100 + now.getMinutes();
+            
+            const today = dayNames[currentDay].toLowerCase();
+            const todayHours = storeHours[today];
+            
+            if (!todayHours) {
+                document.getElementById('statusMessage').textContent = 'Closed Today';
+                document.getElementById('statusIndicator').className = 'status-indicator status-closed';
+                return;
+            }
+            
+            const openTime = parseTime(todayHours.open);
+            const closeTime = parseTime(todayHours.close);
+            
+            let isOpen = false;
+            let nextOpening = '';
+            
+            if (currentTime >= openTime && currentTime < closeTime) {
+                isOpen = true;
+                document.getElementById('statusMessage').textContent = 'Open Now';
+                document.getElementById('statusIndicator').className = 'status-indicator status-open';
+                document.getElementById('nextOpening').textContent = `Closes at ${todayHours.close}`;
+            } else {
+                document.getElementById('statusMessage').textContent = 'Closed Now';
+                document.getElementById('statusIndicator').className = 'status-indicator status-closed';
+                
+                if (currentTime < openTime) {
+                    nextOpening = `Opens today at ${todayHours.open}`;
+                } else {
+                    // Find next opening day
+                    let nextDay = (currentDay + 1) % 7;
+                    while (nextDay !== currentDay) {
+                        const nextDayName = dayNames[nextDay].toLowerCase();
+                        if (storeHours[nextDayName]) {
+                            nextOpening = `Opens ${dayNames[nextDay]} at ${storeHours[nextDayName].open}`;
+                            break;
+                        }
+                        nextDay = (nextDay + 1) % 7;
+                    }
+                }
+                document.getElementById('nextOpening').textContent = nextOpening;
+            }
+        }
+
+        function parseTime(timeStr) {
+            const [time, period] = timeStr.split(' ');
+            const [hours, minutes] = time.split(':');
+            let hour24 = parseInt(hours);
+            
+            if (period === 'PM' && hour24 !== 12) {
+                hour24 += 12;
+            } else if (period === 'AM' && hour24 === 12) {
+                hour24 = 0;
+            }
+            
+            return hour24 * 100 + parseInt(minutes);
+        }
+
+        function populateHoursTable() {
+            const tableBody = document.getElementById('hoursTableBody');
+            const now = new Date();
+            const currentDay = now.getDay();
+            
+            dayNames.forEach((day, index) => {
+                const row = document.createElement('tr');
+                if (index === currentDay) {
+                    row.className = 'current-day';
+                }
+                
+                const dayCell = document.createElement('td');
+                dayCell.textContent = day;
+                
+                const hoursCell = document.createElement('td');
+                const dayKey = day.toLowerCase();
+                if (storeHours[dayKey]) {
+                    hoursCell.textContent = `${storeHours[dayKey].open} - ${storeHours[dayKey].close}`;
+                } else {
+                    hoursCell.textContent = 'Closed';
+                }
+                
+                const statusCell = document.createElement('td');
+                if (index === currentDay) {
+                    const currentTime = now.getHours() * 100 + now.getMinutes();
+                    const openTime = parseTime(storeHours[dayKey].open);
+                    const closeTime = parseTime(storeHours[dayKey].close);
+                    
+                    if (currentTime >= openTime && currentTime < closeTime) {
+                        statusCell.innerHTML = '<span class="status-indicator status-open"></span> Open';
+                    } else {
+                        statusCell.innerHTML = '<span class="status-indicator status-closed"></span> Closed';
+                    }
+                } else {
+                    statusCell.innerHTML = '<span class="status-indicator status-closed"></span> -';
+                }
+                
+                row.appendChild(dayCell);
+                row.appendChild(hoursCell);
+                row.appendChild(statusCell);
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const currentDay = now.getDay();
+            const currentTime = now.getHours() * 100 + now.getMinutes();
+            
+            const today = dayNames[currentDay].toLowerCase();
+            const todayHours = storeHours[today];
+            
+            if (!todayHours) {
+                document.getElementById('countdown').textContent = '';
+                return;
+            }
+            
+            const openTime = parseTime(todayHours.open);
+            const closeTime = parseTime(todayHours.close);
+            
+            let targetTime;
+            let action;
+            
+            if (currentTime < openTime) {
+                targetTime = openTime;
+                action = 'opens';
+            } else if (currentTime < closeTime) {
+                targetTime = closeTime;
+                action = 'closes';
+            } else {
+                // Find next opening
+                let nextDay = (currentDay + 1) % 7;
+                while (nextDay !== currentDay) {
+                    const nextDayName = dayNames[nextDay].toLowerCase();
+                    if (storeHours[nextDayName]) {
+                        targetTime = parseTime(storeHours[nextDayName].open);
+                        action = 'opens';
+                        break;
+                    }
+                    nextDay = (nextDay + 1) % 7;
+                }
+            }
+            
+            if (targetTime) {
+                const timeDiff = targetTime - currentTime;
+                const hours = Math.floor(timeDiff / 100);
+                const minutes = timeDiff % 100;
+                
+                if (hours > 0) {
+                    document.getElementById('countdown').textContent = `${action} in ${hours}h ${minutes}m`;
+                } else {
+                    document.getElementById('countdown').textContent = `${action} in ${minutes}m`;
+                }
+            }
+        }
+
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.store-status, .hours-table, .special-hours').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

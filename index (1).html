@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Arin Kc, Kritagya Ghimire">
+    <meta name="description" content="The official website for The Ocean's Market">
+    <title>Ocean's Market</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <script src="shared.js"></script>
+    <style>
+        body {                              
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #FFA07A;
+        }
+
+        header {
+            background-color: #FFA07A;
+            padding: 0.275rem 0;
+
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #58BDDE; 
+        }
+
+        .logo {
+            width: 170px; 
+            height: auto;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 1.5em 0; 
+            margin: 0.5rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .hero img {
+            width: 90%;
+            max-width: 800px;
+            margin: 1rem 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .prev-btn, .next-btn {
+            background: rgba(255, 160, 122, 0.8);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: rgba(88, 189, 222, 0.8);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section {
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 800px;
+        }
+
+        .section h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="AboutPage.html">ABOUT</a></li>
+                <li><a href="Menu.html">MENU</a></li>
+                <li><img src="OceanCityLogo.png" alt="Ocean's Market Logo" class="logo"></li>
+                <li><a href="hoursPage.html">HOURS</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="gallery">
+            <img src="OCEANS MARKET.jpg" alt="doughnutsoceansmarket.jpg" id="heroImage">
+            <div class="image-controls">
+                <button class="prev-btn" onclick="changeImage(-1)">❮</button>
+                <button class="next-btn" onclick="changeImage(1)">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="about">
+        <h2>Our Mission</h2>
+        <p>
+            To provide the freshest homemade doughnuts while serving as a one-stop convenience store for
+            the Ocean City community. Since 1970, we’ve been committed to delivering quality products with a
+            smile.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Our Community</h2>
+        <p>
+            We take pride in being part of the Ocean City experience. Whether you’re grabbing a doughnut before
+            hitting the beach or stopping in for daily essentials, we’re here to serve you with care and dedication.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Our Belief</h2>
+        <p>
+            We believe in bringing people together through the simple joy of a delicious doughnut. It’s more than
+            just a treat—it’s a moment of happiness that connects us all.
+        </p>
+    </section>
+
+
+
+    </section>
+
+    <footer>
+        <p>Copyright &copy; 2025 The Ocean's Market | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Image carousel functionality
+        const images = [
+            'OCEANS MARKET.jpg',
+            'img/doughnuts.png',
+            'img/doughnut oceans market.jpg'
+        ];
+        let currentImageIndex = 0;
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            }
+            
+            const heroImage = document.getElementById('heroImage');
+            heroImage.style.opacity = '0';
+            
+            setTimeout(() => {
+                heroImage.src = images[currentImageIndex];
+                heroImage.style.opacity = '1';
+                heroImage.classList.add('fade-in');
+            }, 250);
+        }
+
+        // Auto-rotate images every 5 seconds
+        setInterval(() => {
+            changeImage(1);
+        }, 5000);
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for animation
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+
+        // Add click-to-call functionality for phone numbers
+        function makeCall(phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Arin Kc, Kritagya Ghimire">
+    <meta name="description" content="Contact The Ocean's Market">
+    <title>Contact - Ocean's Market</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <script src="shared.js"></script>
+    <style>
+        body {                              
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #FFA07A;
+        }
+
+        header {
+            background-color: #FFA07A;
+            padding: 0.275rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-around; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #58BDDE; 
+        }
+
+        .logo {
+            width: 170px; 
+            height: auto;
+        }
+
+        .contact {
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 600px;
+            font-size: 1.2rem;
+        }
+
+        .contact p {
+            color: #333;
+        }
+
+        .contact-info {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FFA07A;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #FFA07A;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #58BDDE;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .clickable {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .clickable:hover {
+            color: #58BDDE;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="AboutPage.html">ABOUT</a></li>
+                <li><a href="Menu.html">MENU</a></li>
+                <li><img src="OceanCityLogo.png" alt="Ocean's Market Logo" class="logo"></li>
+                <li><a href="hoursPage.html">HOURS</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact">
+        <h2>Contact Us</h2>
+            <p>We'd love to hear from you! Feel free to reach out to us with any questions or feedback.</p>
+            <div class="contact-info">
+                <p><strong>Phone:</strong> <span class="clickable" onclick="makeCall('(410) 250-1927')">(410) 250-1927</span></p>
+                <p><strong>Address:</strong> <span class="clickable" onclick="openMap()">14107 Coastal Hwy, Ocean City, MD</span></p>
+                <p><strong>Email:</strong> <span class="clickable" onclick="sendEmail()">info@oceansmarket.com</span></p>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="nameError">Please enter your name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="order">Order Question</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="complaint">Complaint</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="subjectError">Please select a subject</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                        <div class="error-message" id="messageError">Please enter your message</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    Thank you for your message! We'll get back to you soon.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2025 The Ocean's Market | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Form validation and submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate form
+            let isValid = true;
+            
+            if (!formData.name) {
+                showError('nameError', 'Please enter your name');
+                isValid = false;
+            }
+            
+            if (!formData.email || !isValidEmail(formData.email)) {
+                showError('emailError', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (!formData.subject) {
+                showError('subjectError', 'Please select a subject');
+                isValid = false;
+            }
+            
+            if (!formData.message) {
+                showError('messageError', 'Please enter your message');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Simulate form submission
+                console.log('Form submitted:', formData);
+                showSuccessMessage();
+                document.getElementById('contactForm').reset();
+            }
+        }
+        
+        function showError(errorId, message) {
+            const errorElement = document.getElementById(errorId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+        
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+            });
+        }
+        
+        function showSuccessMessage() {
+            const successElement = document.getElementById('successMessage');
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Interactive contact features
+        function makeCall(phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+        }
+        
+        function openMap() {
+            const address = '14107 Coastal Hwy, Ocean City, MD';
+            const encodedAddress = encodeURIComponent(address);
+            window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, '_blank');
+        }
+        
+        function sendEmail() {
+            const email = 'info@oceansmarket.com';
+            const subject = 'Inquiry from Ocean\'s Market Website';
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+        }
+        
+        // Real-time form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    clearFieldError(this);
+                });
+            });
+        });
+        
+        function validateField(field) {
+            const fieldName = field.name;
+            const value = field.value.trim();
+            
+            switch(fieldName) {
+                case 'name':
+                    if (!value) {
+                        showError('nameError', 'Please enter your name');
+                    }
+                    break;
+                case 'email':
+                    if (!value) {
+                        showError('emailError', 'Please enter your email');
+                    } else if (!isValidEmail(value)) {
+                        showError('emailError', 'Please enter a valid email address');
+                    }
+                    break;
+                case 'subject':
+                    if (!value) {
+                        showError('subjectError', 'Please select a subject');
+                    }
+                    break;
+                case 'message':
+                    if (!value) {
+                        showError('messageError', 'Please enter your message');
+                    }
+                    break;
+            }
+        }
+        
+        function clearFieldError(field) {
+            const fieldName = field.name;
+            const errorId = fieldName + 'Error';
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe form elements for animation
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.style.opacity = '0';
+                group.style.transform = 'translateY(20px)';
+                group.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(group);
+            });
+        });
+    </script>
+</body>
+</html>

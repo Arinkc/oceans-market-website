@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Arin Kc, Kritagya Ghimire">
+    <meta name="description" content="Menu for The Ocean's Market">
+    <title>Menu - Ocean's Market</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <script src="shared.js"></script>
+    <style>
+        body 
+        {                              
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #FFA07A;
+        }
+
+        header {
+            background-color: #FFA07A;
+            padding: 0.275rem 0;
+        }
+
+        nav ul 
+        {
+            display: flex;
+             align-items: center;
+             justify-content: space-around; 
+             list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li 
+        {
+            display: flex;
+            align-items: center; 
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #58BDDE; 
+        }
+
+        .logo {
+            width: 170px; 
+            height: auto;
+        }
+
+        .menu {
+            text-align: center;
+            margin: 2rem auto;
+            padding: 1rem;
+            max-width: 800px;
+        }
+
+        .menu h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-list {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .menu-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu-list li {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            color: #333;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-list li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .search-container {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .search-container input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 2px solid #FFA07A;
+            border-radius: 5px;
+            width: 300px;
+            max-width: 100%;
+        }
+
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .filter-btn {
+            background-color: #FFA07A;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #58BDDE;
+        }
+
+        .price-calculator {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 0.25rem;
+            margin: 0 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .pricing {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="AboutPage.html">ABOUT</a></li>
+                <li><a href="Menu.html">MENU</a></li>
+                <li><img src="OceanCityLogo.png" alt="Ocean's Market Logo" class="logo"></li>
+                <li><a href="hoursPage.html">HOURS</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="menu"> <!-- Where the Menu Is listed --> 
+            <h2>Our Menu</h2>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search doughnuts..." onkeyup="filterMenu()">
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByType('all')">All</button>
+                <button class="filter-btn" onclick="filterByType('chocolate')">Chocolate</button>
+                <button class="filter-btn" onclick="filterByType('sprinkled')">Sprinkled</button>
+                <button class="filter-btn" onclick="filterByType('special')">Special</button>
+            </div>
+            
+            <div class="menu-list">
+                <ul id="menuList">
+                    <li data-type="sprinkled" data-price="2.49">Sprinkled Doughnut - $2.49</li>
+                    <li data-type="chocolate" data-price="2.49">Chocolate Doughnut - $2.49</li>
+                    <li data-type="chocolate sprinkled" data-price="2.49">Chocolate Sprinkled Doughnut - $2.49</li>
+                    <li data-type="special" data-price="2.49">Coconut Doughnut - $2.49</li>
+                    <li data-type="special" data-price="2.49">Peanut Doughnut - $2.49</li>
+                    <li data-type="special" data-price="2.49">Glazed Doughnut - $2.49</li>
+                    <li data-type="special" data-price="2.49">Sand Dollar Doughnut - $2.49</li>
+                    <li data-type="special" data-price="2.49">Cinnamon Sugar Doughnut - $2.49</li>
+                </ul>
+            </div>
+            
+            <div class="price-calculator">
+                <h3>Price Calculator</h3>
+                <p>Individual Doughnut: <input type="number" class="quantity-input" id="individualQty" min="0" value="0" onchange="calculateTotal()"> × $2.49</p>
+                <p>Half Dozen: <input type="number" class="quantity-input" id="halfDozenQty" min="0" value="0" onchange="calculateTotal()"> × $11.99</p>
+                <p>Full Dozen: <input type="number" class="quantity-input" id="fullDozenQty" min="0" value="0" onchange="calculateTotal()"> × $19.99</p>
+                <div class="total-price" id="totalPrice">Total: $0.00</div>
+            </div>
+            
+            <div class="pricing"> <!-- Pricing Here -->
+                <h2> Dozen Doughnuts = $19.99</h2>
+                <h2>Half Dozen Doughnuts = $11.99</h2>
+                <h2>Doughnut Per Piece = $2.49</h2>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2025 The Ocean's Market | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Menu filtering and search functionality
+        function filterMenu() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const menuItems = document.querySelectorAll('#menuList li');
+            
+            menuItems.forEach(item => {
+                const itemText = item.textContent.toLowerCase();
+                if (itemText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function filterByType(type) {
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            const menuItems = document.querySelectorAll('#menuList li');
+            
+            menuItems.forEach(item => {
+                const itemType = item.getAttribute('data-type');
+                
+                if (type === 'all' || itemType.includes(type)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Price calculator functionality
+        function calculateTotal() {
+            const individualQty = parseInt(document.getElementById('individualQty').value) || 0;
+            const halfDozenQty = parseInt(document.getElementById('halfDozenQty').value) || 0;
+            const fullDozenQty = parseInt(document.getElementById('fullDozenQty').value) || 0;
+            
+            const individualPrice = 2.49;
+            const halfDozenPrice = 11.99;
+            const fullDozenPrice = 19.99;
+            
+            const total = (individualQty * individualPrice) + 
+                         (halfDozenQty * halfDozenPrice) + 
+                         (fullDozenQty * fullDozenPrice);
+            
+            document.getElementById('totalPrice').textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Add click-to-add functionality for menu items
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('#menuList li');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Add visual feedback
+                    this.style.backgroundColor = '#e8f5e8';
+                    setTimeout(() => {
+                        this.style.backgroundColor = '';
+                    }, 500);
+                    
+                    // You could add to cart functionality here
+                    console.log('Added to cart:', this.textContent);
+                });
+            });
+        });
+
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe menu items for animation
+            document.querySelectorAll('#menuList li').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
